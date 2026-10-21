@@ -58,7 +58,7 @@ export default async function Page({ params }: P) {
             </ul>
             <div className="flex items-center gap-2 sm:gap-3">
               <Link href={`/${other}`} hrefLang={other} lang={other} className="glass inline-flex min-h-11 items-center rounded-full px-4 text-sm font-semibold">{other === "fa" ? "فارسی" : "English"}</Link>
-              <a href={LINKS.download} target="_blank" rel="noopener noreferrer" aria-label={t.a11y.download} className="btn-glow hidden h-11 items-center gap-2 rounded-full px-5 text-sm font-bold sm:inline-flex">
+              <a href="#download" className="btn-glow hidden h-11 items-center gap-2 rounded-full px-5 text-sm font-bold sm:inline-flex">
                 <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14" /></svg>{t.nav.download}
               </a>
             </div>
@@ -129,7 +129,7 @@ export default async function Page({ params }: P) {
               <h2 id="sounds-title" className="mt-2 text-3xl font-extrabold md:text-4xl">{t.explore.title}</h2>
               <p className="mt-4 max-w-lg leading-relaxed text-muted">{t.explore.sub}</p>
               <div className="my-8"><SoundCards lang={lang} label={t.explore.group} /></div>
-              <a href={LINKS.download} target="_blank" rel="noopener noreferrer" className="btn-glow inline-flex h-12 items-center rounded-full px-7 font-bold transition motion-reduce:transition-none hover:scale-105 motion-reduce:hover:scale-100">{t.explore.cta}</a>
+              <a href="#download" className="btn-glow inline-flex h-12 items-center rounded-full px-7 font-bold transition motion-reduce:transition-none hover:scale-105 motion-reduce:hover:scale-100">{t.explore.cta}</a>
             </div>
             <div className="mx-auto w-full max-w-[16rem] sm:max-w-[17rem]">
               <Phone shots={shots[lang]} labels={t.carousel} initial={1} />
@@ -228,7 +228,7 @@ export default async function Page({ params }: P) {
         </div>
       </footer>
 
-      <StickyCta href={LINKS.download} label={t.nav.download} ariaLabel={t.a11y.download} watch={STICKY_HIDE_WHILE_VISIBLE} />
+      <StickyCta href="#download" label={t.nav.download} watch={STICKY_HIDE_WHILE_VISIBLE} />
     </>
   );
 }

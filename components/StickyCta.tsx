@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
  * section is on screen (IntersectionObserver, so no scroll listeners) and is `inert` when hidden.
  * State only changes when visibility flips, not on every scroll tick.
  */
-export function StickyCta({ href, label, ariaLabel, watch }: { href: string; label: string; ariaLabel: string; watch: string[] }) {
+export function StickyCta({ href, label, watch }: { href: string; label: string; watch: string[] }) {
   const [hidden, setHidden] = useState(true); // starts hidden: the hero CTA is on screen at load
   useEffect(() => {
     const visible = new Set<string>();
@@ -27,7 +27,7 @@ export function StickyCta({ href, label, ariaLabel, watch }: { href: string; lab
   return (
     <div inert={hidden} aria-hidden={hidden}
       className={`fixed inset-x-0 bottom-0 z-30 border-t border-edge/40 bg-sky-top/90 px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur-md transition duration-300 motion-reduce:transition-none md:hidden ${hidden ? "translate-y-full opacity-0" : "translate-y-0 opacity-100"}`}>
-      <a href={href} target="_blank" rel="noopener noreferrer" aria-label={ariaLabel}
+      <a href={href}
         className="btn-glow flex h-12 items-center justify-center rounded-full font-extrabold">{label}</a>
     </div>
   );
