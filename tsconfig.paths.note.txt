@@ -1,0 +1,1 @@
+Needs "paths": { "@/*": ["./*"] } in tsconfig.json (create-next-app default).

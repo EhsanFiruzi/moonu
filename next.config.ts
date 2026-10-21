@@ -1,20 +1,5 @@
 import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
-  experimental: {
-    agentFeedback: true,
-  },
-  cacheComponents: true,
-  partialPrefetching: true,
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
-  },
+const config: NextConfig = {
+  images: { formats: ["image/avif", "image/webp"], qualities: [75, 90, 95] },
 };
-
-export default nextConfig;
+export default config;
