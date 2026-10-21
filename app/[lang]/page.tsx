@@ -73,11 +73,11 @@ export default async function Page({ params }: P) {
       <main id="main">
         <section id="top" aria-labelledby="hero-title" className="relative isolate mx-3 mt-2 overflow-hidden rounded-[2rem] ring-1 ring-edge/30 md:mx-6 md:mt-4 md:rounded-[2.5rem]">
           <Image src={bgs.hero} alt="" fill priority quality={90} sizes="100vw" className="-z-10 object-cover object-[72%_center] md:object-right rtl:scale-x-[-1] feather-y" />
-          <div aria-hidden className="absolute inset-0 -z-10 bg-linear-to-b from-sky-top/80 via-sky-top/90 to-sky-top/95 lg:bg-linear-to-r lg:from-sky-top lg:via-sky-top/85 lg:to-sky-top/40 lg:rtl:bg-linear-to-l" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-linear-to-b from-sky-top/85 via-sky-top/60 to-sky-top/15 lg:bg-linear-to-r lg:from-sky-top lg:via-sky-top/85 lg:to-sky-top/40 lg:rtl:bg-linear-to-l" />
           <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-12 sm:py-16 lg:grid-cols-[1.1fr_.9fr] lg:gap-8 lg:py-24">
             <div className="rise max-w-xl">
               <p className="font-semibold text-accent-light">{t.hero.eyebrow}</p>
-              <h1 id="hero-title" className="mt-3 text-balance text-[clamp(2.25rem,8vw,3.75rem)] font-extrabold leading-[1.25]">{t.hero.h1}</h1>
+              <h1 id="hero-title" className="mt-3 text-balance [text-shadow:0_2px_14px_rgb(5_8_24/.7)] text-[clamp(2.25rem,8vw,3.75rem)] font-extrabold leading-[1.25]">{t.hero.h1}</h1>
               <p className="mt-5 max-w-md text-base leading-relaxed sm:text-lg">{t.hero.sub}</p>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {t.hero.benefits.map((b) => (
@@ -178,12 +178,12 @@ export default async function Page({ params }: P) {
 
         <section id="about" aria-labelledby="about-title" className="relative isolate mx-3 flex min-h-[360px] items-center overflow-hidden rounded-[2rem] ring-1 ring-edge/30 md:mx-6 md:min-h-[460px] md:rounded-[2.5rem]">
           <Image src={bgs.mission} alt="" fill quality={90} sizes="100vw" className="-z-10 object-cover object-[25%_center] rtl:scale-x-[-1] feather-y" />
-          <div aria-hidden className="absolute inset-0 -z-10 bg-sky-top/85 md:bg-transparent md:bg-linear-to-r md:from-transparent md:via-sky-top/60 md:to-sky-top/95 md:rtl:bg-linear-to-l" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-sky-top/60 md:bg-transparent md:bg-linear-to-r md:from-transparent md:via-sky-top/60 md:to-sky-top/95 md:rtl:bg-linear-to-l" />
           <div className="mx-auto grid w-full max-w-6xl px-5 py-16 md:grid-cols-2 md:py-20">
             <div className="md:col-start-2">
               <p className="text-sm text-accent-light">{t.about.eyebrow}</p>
-              <h2 id="about-title" className="mt-2 text-3xl font-extrabold md:text-4xl">{t.about.title}</h2>
-              <p className="mt-4 max-w-md leading-relaxed">{t.about.sub}</p>
+              <h2 id="about-title" className="mt-2 text-3xl font-extrabold [text-shadow:0_2px_14px_rgb(5_8_24/.7)] md:text-4xl">{t.about.title}</h2>
+              <p className="mt-4 max-w-md leading-relaxed [text-shadow:0_1px_10px_rgb(5_8_24/.8)]">{t.about.sub}</p>
               <p className="mt-6 flex items-center gap-2 text-lg font-semibold italic text-accent-light">
                 {t.about.note}
                 <svg viewBox="0 0 24 24" className="size-5 shrink-0" fill="currentColor" aria-hidden><path d="M12 21s-8-5.2-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.8-8 11-8 11z" /></svg>

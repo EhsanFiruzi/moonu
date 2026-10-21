@@ -48,7 +48,10 @@ body::after {
 :focus-visible { outline: 3px solid var(--color-moon); outline-offset: 3px; border-radius: 12px; }
 
 /* images dissolve into the sky instead of ending on a hard edge */
-.feather-y { -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 24%, #000 66%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 24%, #000 66%, transparent 100%); }
+.feather-y { -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%); }
+@media (min-width: 768px) {
+  .feather-y { -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 24%, #000 66%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 24%, #000 66%, transparent 100%); }
+}
 
 /* the hero text fades up once; content is fully visible without it */
 .rise { animation: rise .7s cubic-bezier(.22,1,.36,1) both; }
