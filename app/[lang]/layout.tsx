@@ -7,7 +7,8 @@ import "../globals.css";
 const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito", display: "swap" });
 const vaz = Vazirmatn({ subsets: ["arabic", "latin"], variable: "--font-vaz", display: "swap" });
 
-export const viewport: Viewport = { themeColor: "#050818", colorScheme: "dark" };
+// viewportFit: "cover" lets env(safe-area-inset-bottom) work for the mobile download bar
+export const viewport: Viewport = { themeColor: "#050818", colorScheme: "dark", viewportFit: "cover" };
 export const generateStaticParams = () => [{ lang: "fa" }, { lang: "en" }];
 
 export default async function RootLayout({ children, params }: { children: React.ReactNode; params: Promise<{ lang: string }> }) {

@@ -18,9 +18,14 @@ export const sounds = [
   { id: "night", icon: "music-genre-moon", bg: "cozy_moonlit_nursery_dreamscape", fa: "موسیقی شب", en: "Night music", dfa: "ملودی‌های آرام زیر ماه", den: "Soft melodies under the moon" }, // adjust names to match the app
 ].map((s) => ({ ...s, iconUrl: `${A}svg_icons/${s.icon}.svg`, bgUrl: `${A}sound_categories_bg/${s.bg}.png` }));
 export const momo = (n: string) => `${A}moonu_momo/${n}.png`;
+export const icon = (n: string) => `${A}svg_icons/${n}.svg`;
 const shot = (n: string) => encodeURI(`${A}app_screenshots/${n}.png`); // tip: rename files to plain ASCII
 export const shots: Record<Lang, string[]> = {
   en: ["find_your_night_time_calm", "moonu_ a_dreamy_night_of_calm_1", "moonu_cozy_fireplace_sleepscape"].map(shot),
   fa: ["moonu_cozy_fireplace_sleepscape", "ترکیب صداها در شب آرام", "ردیابی خواب در شب_های آرام"].map(shot),
 };
+/** Space reserved for a screenshot so the page doesn't shift while it loads.
+ *  ASSUMPTION: modern tall phone ratio. Replace with the real pixel size of your screenshots
+ *  (images that differ are letterboxed with object-contain, never stretched). */
+export const shotSize = { width: 1080, height: 2340 };
 export const bgs = { hero: "/assets/backgrounds/momo_sleep_with_stars.jpg", mission: "/assets/backgrounds/momo_looking_at_moon.jpg" };

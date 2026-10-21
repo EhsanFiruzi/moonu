@@ -13,66 +13,59 @@
   --color-edge: rgb(124 134 247 / 0.3);
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
-html[lang="fa"] { font-family: var(--font-vaz), system-ui, sans-serif; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; scroll-padding-bottom: 6rem; }
+html[lang="fa"] { font-family: var(--font-vaz), system-ui, sans-serif; line-height: 1.8; }
 html[lang="en"] { font-family: var(--font-nunito), system-ui, sans-serif; }
 body {
   color: var(--color-ink);
   background: linear-gradient(180deg, var(--color-sky-top), var(--color-sky-bottom)) fixed;
   background-color: var(--color-sky-top);
-  overflow-x: hidden;
 }
-/* soft star field, painted once */
+
+/* Ambient sky: a soft star field. Only one layer twinkles, slowly; the other stays still. */
+body::before, body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; }
 body::before {
-  content: ""; position: fixed; inset: 0; z-index: -1; opacity: .7; pointer-events: none;
+  opacity: .7; animation: twinkle 9s ease-in-out infinite;
   background-image:
     radial-gradient(1.2px 1.2px at 12% 18%, #fff 50%, transparent), radial-gradient(1px 1px at 78% 12%, #fff 50%, transparent),
     radial-gradient(1.4px 1.4px at 44% 36%, #fff 50%, transparent), radial-gradient(1px 1px at 90% 48%, #fff 50%, transparent),
     radial-gradient(1.2px 1.2px at 24% 62%, #fff 50%, transparent), radial-gradient(1px 1px at 62% 74%, #fff 50%, transparent);
   background-size: 420px 420px;
 }
-@layer components {
-.glass { background: var(--color-card); border: 1px solid var(--color-edge); backdrop-filter: blur(12px); }
-.btn-glow { background: linear-gradient(90deg, var(--color-accent-light), var(--color-accent)); color: var(--color-on-accent); box-shadow: 0 8px 24px rgb(124 134 247 / .45); }
-}
-:focus-visible { outline: 3px solid var(--color-moon); outline-offset: 3px; border-radius: 12px; }
-
-@keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-14px) } }
-@keyframes rise { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: none } }
-.float { animation: float 6s ease-in-out infinite; }
-.rise { animation: rise .8s cubic-bezier(.22,1,.36,1) both; }
-@media (prefers-reduced-motion: reduce) { .float, .rise { animation: none; } html { scroll-behavior: auto; } }
-details summary::-webkit-details-marker { display: none; }
-details[open] .chev { transform: rotate(180deg); }
-
-/* ---- softer, calmer sky: drifting clouds + twinkling stars ---- */
-body::before, body::after { animation: twinkle 7s ease-in-out infinite; }
 body::after {
-  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; animation-delay: -3.5s;
+  opacity: .5;
   background-image:
     radial-gradient(1px 1px at 8% 44%, #fff 50%, transparent), radial-gradient(1.3px 1.3px at 36% 8%, #fff 50%, transparent),
     radial-gradient(1px 1px at 70% 30%, #fff 50%, transparent), radial-gradient(1.2px 1.2px at 94% 82%, #fff 50%, transparent),
     radial-gradient(1px 1px at 52% 90%, #fff 50%, transparent);
   background-size: 360px 360px;
 }
-.cloud { position: absolute; border-radius: 9999px; filter: blur(32px); background: radial-gradient(closest-side, rgb(154 163 255 / .2), transparent); animation: drift 90s ease-in-out infinite alternate; }
-.cloud::before, .cloud::after { content: ""; position: absolute; border-radius: 9999px; background: inherit; }
-.cloud::before { width: 55%; height: 140%; top: -45%; left: 12%; }
-.cloud::after { width: 45%; height: 120%; top: -30%; right: 10%; }
+
+@layer components {
+  .glass { background: var(--color-card); border: 1px solid var(--color-edge); backdrop-filter: blur(12px); }
+  .btn-glow { background: linear-gradient(90deg, var(--color-accent-light), var(--color-accent)); color: var(--color-on-accent); box-shadow: 0 8px 24px rgb(124 134 247 / .45); }
+}
+:focus-visible { outline: 3px solid var(--color-moon); outline-offset: 3px; border-radius: 12px; }
+
 /* images dissolve into the sky instead of ending on a hard edge */
 .feather-y { -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 24%, #000 66%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 24%, #000 66%, transparent 100%); }
-/* reactbits-style effects, dependency-free */
-.shiny { background: linear-gradient(110deg, var(--color-accent-light) 40%, #fff 50%, var(--color-accent-light) 60%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 5s linear infinite; }
-.blurin { animation: blurin .9s cubic-bezier(.22, 1, .36, 1) both; }
+
+/* the hero text fades up once; content is fully visible without it */
+.rise { animation: rise .7s cubic-bezier(.22,1,.36,1) both; }
+
+/* cursor glow on cards: mouse only, purely decorative */
 .spot { position: relative; overflow: hidden; }
-.spot::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(280px circle at var(--x, 50%) var(--y, -50%), rgb(154 163 255 / .22), transparent 70%); }
-.spot:hover::before { opacity: 1; }
-.star-border { position: relative; overflow: hidden; isolation: isolate; }
-.star-border::before { content: ""; position: absolute; inset: -150%; z-index: -2; background: conic-gradient(from 0deg, transparent 0 70%, var(--color-moon) 86%, transparent 100%); animation: spin 4s linear infinite; }
-.star-border::after { content: ""; position: absolute; inset: 2px; z-index: -1; border-radius: inherit; background: var(--color-sky-bottom); }
-@keyframes drift { from { transform: translateX(-7vw); } to { transform: translateX(7vw); } }
-@keyframes twinkle { 0%, 100% { opacity: .3; } 50% { opacity: .9; } }
-@keyframes shine { to { background-position: -200% center; } }
-@keyframes blurin { from { opacity: 0; filter: blur(12px); transform: translateY(14px); } to { opacity: 1; filter: blur(0); transform: none; } }
-@keyframes spin { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .cloud, body::before, body::after, .blurin, .shiny, .star-border::before { animation: none; } }
+.spot::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(280px circle at var(--x, 50%) var(--y, -50%), rgb(154 163 255 / .2), transparent 70%); }
+@media (hover: hover) and (pointer: fine) { .spot:hover::before { opacity: 1; } }
+
+details summary { list-style: none; }
+details summary::-webkit-details-marker { display: none; }
+details[open] .chev { transform: rotate(180deg); }
+
+@keyframes rise { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+@keyframes twinkle { 0%, 100% { opacity: .35; } 50% { opacity: .8; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
