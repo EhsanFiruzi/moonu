@@ -18,11 +18,13 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   const { lang } = await params;
   if (!isLang(lang)) return {};
   const { title, desc } = dict[lang].meta;
+  // metadataBase already carries the base path, so these must NOT include it
+  const ogImage = "/assets/moonu_momo/pose_1_wave.png";
   const og = { url: `/${lang}`, title, description: desc, siteName: "Moonu", type: "website" as const,
     locale: lang === "fa" ? "fa_IR" : "en_US", alternateLocale: lang === "fa" ? "en_US" : "fa_IR",
-    images: [{ url: momo("pose_1_wave"), alt: "Momo" }] };
+    images: [{ url: ogImage, alt: "Momo" }] };
   return { title, description: desc, alternates: { canonical: `/${lang}`, languages: { fa: "/fa", en: "/en", "x-default": "/en" } },
-    openGraph: og, twitter: { card: "summary_large_image", title, description: desc, images: [momo("pose_1_wave")] } };
+    openGraph: og, twitter: { card: "summary_large_image", title, description: desc, images: [ogImage] } };
 }
 
 export default async function Page({ params }: P) {
@@ -39,7 +41,7 @@ export default async function Page({ params }: P) {
   // Structured data for search + answer engines (AEO): the FAQ text mirrors the visible page.
   const ld = { "@context": "https://schema.org", "@graph": [
     { "@type": "MobileApplication", name: "Moonu", description: t.meta.desc, operatingSystem: "Android", applicationCategory: "LifestyleApplication",
-      inLanguage: ["fa", "en"], image: `${SITE}${momo("moonu_icon")}`, url: `${SITE}/${lang}`, downloadUrl: LINKS.download,
+      inLanguage: ["fa", "en"], image: new URL(momo("moonu_icon"), SITE).toString(), url: `${SITE}/${lang}`, downloadUrl: LINKS.download,
       author: { "@type": "Person", name: "Ehsan Firuzi" } },
     { "@type": "FAQPage", inLanguage: lang, mainEntity: t.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
   ] };

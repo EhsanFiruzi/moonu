@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Moonu</title>
+  <script>
+    // "/" has no page of its own: send people to the Persian or English version.
+    var l = ((navigator.language || "") + "").toLowerCase().indexOf("fa") === 0 ? "fa" : "en";
+    location.replace(l + "/" + location.search + location.hash);
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=en/"></noscript>
+</head>
+<body style="background:#050818;color:#f4f6ff;font-family:system-ui,sans-serif;text-align:center;padding-top:20vh">
+  <p><a style="color:#9aa3ff" href="en/">English</a> · <a style="color:#9aa3ff" href="fa/">فارسی</a></p>
+</body>
+</html>

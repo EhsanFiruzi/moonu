@@ -7,7 +7,9 @@ export const LINKS = {
 };
 export type Lang = "fa" | "en";
 export const isLang = (l: string): l is Lang => l === "fa" || l === "en";
-const A = "/assets/";
+/** Set to "/<repo>" when deploying to a GitHub Pages project site; empty for a custom domain or local dev. */
+export const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const A = `${BASE}/assets/`;
 export const sounds = [
   { id: "rain", icon: "rain", bg: "cozy_rainy_cabin_lake_retreat", fa: "باران", en: "Rain", dfa: "قطره‌های آرام روی کلبه و دریاچه", den: "Soft drops on a cabin and a quiet lake" },
   { id: "fire", icon: "fire", bg: "cozy_winter_cabin_by_the_fire", fa: "آتش", en: "Fireplace", dfa: "گرمای شومینه در شبی سرد", den: "A crackling fire on a cold night" },
@@ -28,8 +30,7 @@ export const shots: Record<Lang, string[]> = {
  *  ASSUMPTION: modern tall phone ratio. Replace with the real pixel size of your screenshots
  *  (images that differ are letterboxed with object-contain, never stretched). */
 export const shotSize = { width: 1080, height: 2340 };
-export const bgs = {
-  hero: "/assets/backgrounds/momo_sleep_with_stars.jpg",
-  heroMobile: "/assets/backgrounds/momo_sleep_with_stars_2.jpg",
-  mission: "/assets/backgrounds/momo_looking_at_moon.jpg",
-};
+export const bgs = { hero: `${A}backgrounds/momo_sleep_with_stars.jpg`,
+ heroMobile: `${A}backgrounds/momo_sleep_with_stars_2.jpg`,
+  mission: `${A}backgrounds/momo_looking_at_moon.jpg` };
+  

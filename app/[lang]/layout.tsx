@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Nunito, Vazirmatn } from "next/font/google";
 import { notFound } from "next/navigation";
-import { SITE, isLang } from "@/lib/links";
+import { SITE, isLang, momo } from "@/lib/links";
 import "../globals.css";
 
 const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito", display: "swap" });
@@ -21,4 +21,4 @@ export default async function RootLayout({ children, params }: { children: React
   );
 }
 
-export const metadata: Metadata = { metadataBase: new URL(SITE), icons: { icon: "/assets/moonu_momo/moonu_icon.png", apple: "/assets/moonu_momo/moonu_icon.png" } };
+export const metadata: Metadata = { metadataBase: new URL(SITE), icons: { icon: momo("moonu_icon"), apple: momo("moonu_icon") } };
