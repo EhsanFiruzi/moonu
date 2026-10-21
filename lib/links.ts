@@ -21,6 +21,6 @@ export const momo = (n: string) => `${A}moonu_momo/${n}.png`;
 const shot = (n: string) => encodeURI(`${A}app_screenshots/${n}.png`); // tip: rename files to plain ASCII
 export const shots: Record<Lang, string[]> = {
   en: ["find_your_night_time_calm", "moonu_ a_dreamy_night_of_calm_1", "moonu_cozy_fireplace_sleepscape"].map(shot),
-  fa: ["Moonu_ آرامش شب، به سبک تو", "ترکیب صداها در شب آرام", "ردیابی خواب در شب_های آرام"].map(shot),
+  fa: ["moonu_cozy_fireplace_sleepscape", "ترکیب صداها در شب آرام", "ردیابی خواب در شب_های آرام"].map(shot),
 };
 export const bgs = { hero: "/assets/backgrounds/momo_sleep_with_stars.jpg", mission: "/assets/backgrounds/momo_looking_at_moon.jpg" };

@@ -59,10 +59,9 @@ export default async function Page({ params }: P) {
       </header>
 
       <main>
-        <section id="top" className="relative isolate flex min-h-[640px] items-center overflow-hidden md:min-h-[740px]">
+        <section id="top" className="relative isolate mx-3 flex min-h-[640px] items-center overflow-hidden rounded-[2.5rem] ring-1 ring-edge/30 md:mx-6 md:min-h-[740px]">
           <Image src={bgs.hero} alt="" fill priority quality={90} sizes="100vw" className="-z-10 object-cover object-[72%_center] md:object-right rtl:scale-x-[-1] feather-y" />
-          <div aria-hidden className="absolute inset-0 -z-10 bg-linear-to-b from-sky-top/40 via-sky-top/75 to-sky-top md:bg-linear-to-r md:from-sky-top md:via-sky-top/55 md:to-transparent md:rtl:bg-linear-to-l" />
-          <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-linear-to-b from-transparent to-sky-top" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-linear-to-b from-sky-top/60 via-sky-top/85 to-sky-top/95 md:bg-linear-to-r md:from-sky-top md:via-sky-top/80 md:to-sky-top/20 md:rtl:bg-linear-to-l" />
           <div className="mx-auto w-full max-w-6xl px-5 py-20">
             <div className="rise max-w-xl">
               <p className="shiny inline-block font-semibold">{t.hero.eyebrow}</p>
@@ -110,9 +109,9 @@ export default async function Page({ params }: P) {
           </div>
         </section>
 
-        <section id="about" className="relative isolate flex min-h-[520px] items-center overflow-hidden">
+        <section id="about" className="relative isolate mx-3 flex min-h-[520px] items-center overflow-hidden rounded-[2.5rem] ring-1 ring-edge/30 md:mx-6">
           <Image src={bgs.mission} alt="" fill quality={90} sizes="100vw" className="-z-10 object-cover object-[25%_center] rtl:scale-x-[-1] feather-y" />
-          <div aria-hidden className="absolute inset-0 -z-10 bg-sky-top/70 md:bg-transparent md:bg-linear-to-r md:from-transparent md:via-sky-top/30 md:to-sky-top/90 md:rtl:bg-linear-to-l" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-sky-top/80 md:bg-transparent md:bg-linear-to-r md:from-transparent md:via-sky-top/55 md:to-sky-top/95 md:rtl:bg-linear-to-l" />
           <div className="mx-auto grid w-full max-w-6xl px-5 py-24 md:grid-cols-2">
             <div className="md:col-start-2">
               <p className="text-sm text-accent-light">{t.about.eyebrow}</p>

@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 /** Words blur in one after another (reactbits "Blur Text"). Splits by word so Persian letters stay joined. */
 export function BlurText({ text }: { text: string }) {
@@ -30,14 +30,31 @@ export function SpotlightCard({ children, className = "" }: { children: React.Re
   );
 }
 
-/** Slow clouds and a top glow behind the whole page. */
+/** Top glow, plus a dark veil that deepens as the page scrolls (the stars stay above it). */
 export function SkyBackground() {
+  const dark = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      if (dark.current) dark.current.style.opacity = String(p * 0.88);
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute -top-40 left-1/2 h-96 w-[70rem] -translate-x-1/2 rounded-full bg-accent/15 blur-3xl" />
-      <div className="cloud" style={{ top: "10%", left: "-10%", width: "55vw", height: "14rem" }} />
-      <div className="cloud" style={{ top: "45%", right: "-15%", width: "60vw", height: "16rem", animationDuration: "120s", animationDirection: "alternate-reverse" }} />
-      <div className="cloud" style={{ bottom: "-4%", left: "10%", width: "70vw", height: "14rem", animationDuration: "105s" }} />
+      <div ref={dark} className="absolute inset-0 bg-[#01020a] opacity-0" />
     </div>
   );
 }
