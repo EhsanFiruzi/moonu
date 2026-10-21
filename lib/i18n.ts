@@ -48,7 +48,7 @@ const fa = {
     { q: "آیا می‌توانم خوابم را ثبت کنم؟", a: "بله. هر صبح مدت خواب و ساعت خواب و بیداری‌ات را خودت ثبت می‌کنی و مونو میانگین‌ها و نمودار هفته و ماه را نشان می‌دهد." },
     { q: "چطور با پشتیبانی تماس بگیرم؟", a: "برای گزارش مشکل یا پرسش، به ایمیل پشتیبانی پایین صفحه پیام بده." },
   ],
-  cta: { title: "امشب روتین آرام‌تری شروع کن", sub: "مونو را دانلود کن و مومو را ملاقات کن.", avail: "اپ اندروید · فعلاً فقط در مایکت موجود است" },
+  cta: { title: "امشب روتین آرام‌تری شروع کن", sub: "مونو را دانلود کن و مومو را ملاقات کن."},
   footer: { rights: "همه حقوق محفوظ است", support: "پشتیبانی", other: "برنامه‌های دیگر", myket: "مایکت", bazaar: "کافه‌بازار" },
 };
 
@@ -100,7 +100,7 @@ const en: typeof fa = {
     { q: "Can I log my sleep?", a: "Yes. Each morning you log how long you slept and when, and Moonu shows averages plus weekly and monthly charts." },
     { q: "How do I contact support?", a: "Email the support address at the bottom of the page to report a bug or ask a question." },
   ],
-  cta: { title: "Start a calmer bedtime tonight", sub: "Download Moonu and meet Momo.", avail: "Android app · available on Myket for now" },
+  cta: { title: "Start a calmer bedtime tonight", sub: "Download Moonu and meet Momo.",  },
   footer: { rights: "All rights reserved", support: "Support", other: "Other apps", myket: "Myket", bazaar: "Cafe Bazaar" },
 };
 

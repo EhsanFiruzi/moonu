@@ -222,7 +222,7 @@ export default async function Page({ params }: P) {
           <h2 id="download-title" className="relative text-3xl font-extrabold md:text-4xl">{t.cta.title}</h2>
           <p className="relative mt-2 text-muted">{t.cta.sub}</p>
           <div className="relative mt-8 flex justify-center"><Download lang={lang} size="h-16" /></div>
-          <p className="relative mt-4 text-sm text-muted">{t.cta.avail}</p>
+         
         </section>
       </main>
 
