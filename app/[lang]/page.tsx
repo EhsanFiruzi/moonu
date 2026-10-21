@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Download } from "@/components/Download";
+import { BlurText, SkyBackground, SpotlightCard } from "@/components/Fx";
 import { Phone, SoundCards } from "@/components/Interactive";
 import { dict } from "@/lib/i18n";
 import { LINKS, SITE, bgs, isLang, momo, shots } from "@/lib/links";
@@ -36,9 +37,10 @@ export default async function Page({ params }: P) {
 
   return (
     <>
+      <SkyBackground />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld).replace(/</g, "\\u003c") }} />
-      <header className="sticky top-0 z-30 border-b border-edge/30 bg-sky-top/70 backdrop-blur-md">
-        <nav aria-label="Main" className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-4 px-5">
+      <header className="sticky top-3 z-30 px-3">
+        <nav aria-label="Main" className="glass mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 rounded-full px-5">
           <Link href={`/${lang}`} className="flex items-center gap-2 text-2xl font-extrabold">
             <Image src={momo("moonu_icon")} alt="" width={40} height={40} className="rounded-xl" /> Moonu
           </Link>
@@ -49,7 +51,7 @@ export default async function Page({ params }: P) {
           </div>
           <div className="flex items-center gap-3">
             <Link href={`/${other}`} hrefLang={other} lang={other} className="glass rounded-full px-3 py-2 text-sm font-semibold">{other === "fa" ? "فارسی" : "English"}</Link>
-            <a href={LINKS.download} target="_blank" rel="noopener noreferrer" className="btn-glow hidden h-11 items-center gap-2 rounded-full px-5 text-sm font-bold sm:inline-flex">
+            <a href="#download" className="btn-glow hidden h-11 items-center gap-2 rounded-full px-5 text-sm font-bold sm:inline-flex">
               <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14" /></svg>{t.nav.download}
             </a>
           </div>
@@ -58,13 +60,13 @@ export default async function Page({ params }: P) {
 
       <main>
         <section id="top" className="relative isolate flex min-h-[640px] items-center overflow-hidden md:min-h-[740px]">
-          <Image src={bgs.hero} alt="" fill priority quality={90} sizes="100vw" className="-z-10 object-cover object-[72%_center] md:object-right rtl:scale-x-[-1]" />
+          <Image src={bgs.hero} alt="" fill priority quality={90} sizes="100vw" className="-z-10 object-cover object-[72%_center] md:object-right rtl:scale-x-[-1] feather-y" />
           <div aria-hidden className="absolute inset-0 -z-10 bg-linear-to-b from-sky-top/40 via-sky-top/75 to-sky-top md:bg-linear-to-r md:from-sky-top md:via-sky-top/55 md:to-transparent md:rtl:bg-linear-to-l" />
           <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-linear-to-b from-transparent to-sky-top" />
           <div className="mx-auto w-full max-w-6xl px-5 py-20">
             <div className="rise max-w-xl">
-              <p className="text-accent-light">{t.hero.eyebrow}</p>
-              <h1 className="mt-4 text-5xl font-extrabold leading-[1.15] sm:text-6xl">{t.hero.h1}</h1>
+              <p className="shiny inline-block font-semibold">{t.hero.eyebrow}</p>
+              <h1 className="mt-4 text-5xl font-extrabold leading-[1.15] sm:text-6xl"><BlurText text={t.hero.h1} /></h1>
               <p className="mt-6 max-w-md text-lg leading-relaxed">{t.hero.sub}</p>
               <div className="mt-8"><Download lang={lang} /></div>
               <p className="mt-4 text-sm text-muted">{t.hero.note}</p>
@@ -77,7 +79,7 @@ export default async function Page({ params }: P) {
           <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">{t.why.title}</h2>
           <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {t.features.map((f, i) => (
-              <article key={f.t} className="group text-center">
+              <SpotlightCard key={f.t} className="group p-7 text-center">
                 <div className="mx-auto grid size-20 place-items-center rounded-[1.75rem] bg-accent/25 transition group-hover:-translate-y-1 group-hover:bg-accent/40">
                   {i === 2 ? <Image src={momo("expr_1_happy_sleepy")} alt="" width={48} height={48} className="size-12 object-contain" /> : (
                     <svg viewBox="0 0 24 24" className="size-10 text-accent-light" fill="currentColor" aria-hidden>
@@ -89,7 +91,7 @@ export default async function Page({ params }: P) {
                 </div>
                 <h3 className="mt-5 text-lg font-bold">{f.t}</h3>
                 <p className="mx-auto mt-2 max-w-60 text-sm leading-relaxed text-muted">{f.d}</p>
-              </article>
+              </SpotlightCard>
             ))}
           </div>
         </section>
@@ -103,13 +105,13 @@ export default async function Page({ params }: P) {
               <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">{t.explore.title}</h2>
               <p className="mt-4 max-w-lg leading-relaxed text-muted">{t.explore.sub}</p>
               <div className="my-8"><SoundCards lang={lang} /></div>
-              <a href={LINKS.download} target="_blank" rel="noopener noreferrer" className="btn-glow inline-flex h-12 items-center rounded-full px-7 font-bold transition hover:scale-105">{t.explore.cta}</a>
+              <a href="#download" className="btn-glow inline-flex h-12 items-center rounded-full px-7 font-bold transition hover:scale-105">{t.explore.cta}</a>
             </div>
           </div>
         </section>
 
-        <section id="about" className="relative isolate flex min-h-[520px] items-center overflow-hidden border-y border-edge/30">
-          <Image src={bgs.mission} alt="" fill quality={90} sizes="100vw" className="-z-10 object-cover object-[25%_center] rtl:scale-x-[-1]" />
+        <section id="about" className="relative isolate flex min-h-[520px] items-center overflow-hidden">
+          <Image src={bgs.mission} alt="" fill quality={90} sizes="100vw" className="-z-10 object-cover object-[25%_center] rtl:scale-x-[-1] feather-y" />
           <div aria-hidden className="absolute inset-0 -z-10 bg-sky-top/70 md:bg-transparent md:bg-linear-to-r md:from-transparent md:via-sky-top/30 md:to-sky-top/90 md:rtl:bg-linear-to-l" />
           <div className="mx-auto grid w-full max-w-6xl px-5 py-24 md:grid-cols-2">
             <div className="md:col-start-2">
@@ -139,11 +141,11 @@ export default async function Page({ params }: P) {
           </div>
         </section>
 
-        <section className="relative overflow-hidden px-5 py-24 text-center">
+        <section id="download" className="relative overflow-hidden px-5 py-24 text-center">
           <div aria-hidden className="pointer-events-none absolute -bottom-32 -end-32 h-72 w-[28rem] rounded-full bg-accent/20 blur-3xl" />
           <h2 className="relative text-3xl font-extrabold md:text-4xl">{t.cta.title}</h2>
           <p className="relative mt-2 text-muted">{t.cta.sub}</p>
-          <div className="relative mt-8 flex justify-center"><Download lang={lang} size="h-16" /></div>
+          <div className="relative mt-8 flex justify-center"><div className="star-border rounded-2xl p-1.5"><Download lang={lang} size="h-16" /></div></div>
           <p className="relative mt-4 text-sm text-muted">{t.cta.avail}</p>
         </section>
       </main>
@@ -161,7 +163,7 @@ export default async function Page({ params }: P) {
       </footer>
 
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-edge/40 bg-sky-top/85 p-3 backdrop-blur-md md:hidden">
-        <a href={LINKS.download} target="_blank" rel="noopener noreferrer" className="btn-glow flex h-12 items-center justify-center rounded-full font-extrabold">{t.nav.download}</a>
+        <a href="#download" className="btn-glow flex h-12 items-center justify-center rounded-full font-extrabold">{t.nav.download}</a>
       </div>
     </>
   );
