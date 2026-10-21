@@ -18,10 +18,10 @@ export const sounds = [
   { id: "wind", icon: "wind", bg: "wind_swept_golden_lakeside_vista", fa: "باد", en: "Wind", dfa: "نسیمی کنار دریاچه", den: "A breeze across the lakeside" },
   { id: "yoga", icon: "yoga", bg: "yoga", fa: "یوگا", en: "Yoga", dfa: "فضایی برای نفس‌های عمیق", den: "Room for slow, deep breaths" },
   { id: "night", icon: "music-genre-moon", bg: "cozy_moonlit_nursery_dreamscape", fa: "موسیقی شب", en: "Night music", dfa: "ملودی‌های آرام زیر ماه", den: "Soft melodies under the moon" }, // adjust names to match the app
-].map((s) => ({ ...s, iconUrl: `${A}svg_icons/${s.icon}.svg`, bgUrl: `${A}sound_categories_bg/${s.bg}.png` }));
+].map((s) => ({ ...s, iconUrl: `${A}svg_icons/${s.icon}.svg`, bgUrl: `${A}sound_categories_bg/${s.bg}.webp` }));
 export const momo = (n: string) => `${A}moonu_momo/${n}.png`;
 export const icon = (n: string) => `${A}svg_icons/${n}.svg`;
-const shot = (n: string) => encodeURI(`${A}app_screenshots/${n}.jpg`); // tip: rename files to plain ASCII
+const shot = (n: string) => encodeURI(`${A}app_screenshots/${n}.webp`); // tip: rename files to plain ASCII
 export const shots: Record<Lang, string[]> = {
   en: ["photo_5_2026-10-20_09-42-50", "photo_6_2026-10-20_09-42-50", "photo_2026-10-20_10-09-04"].map(shot),
   fa: ["photo_2026-10-20_10-09-04", "photo_1_2026-10-20_09-42-50", "photo_3_2026-10-20_09-42-50"].map(shot),
@@ -30,7 +30,4 @@ export const shots: Record<Lang, string[]> = {
  *  ASSUMPTION: modern tall phone ratio. Replace with the real pixel size of your screenshots
  *  (images that differ are letterboxed with object-contain, never stretched). */
 export const shotSize = { width: 1080, height: 2340 };
-export const bgs = { hero: `${A}backgrounds/momo_sleep_with_stars.jpg`,
- heroMobile: `${A}backgrounds/momo_sleep_with_stars_2.jpg`,
-  mission: `${A}backgrounds/momo_looking_at_moon.jpg` };
-  
+export const bgs = { hero: `${A}backgrounds/momo_sleep_with_stars.webp`, heroMobile: `${A}backgrounds/momo_sleep_with_stars_2.webp`, mission: `${A}backgrounds/momo_looking_at_moon.webp` };
