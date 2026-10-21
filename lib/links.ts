@@ -28,4 +28,8 @@ export const shots: Record<Lang, string[]> = {
  *  ASSUMPTION: modern tall phone ratio. Replace with the real pixel size of your screenshots
  *  (images that differ are letterboxed with object-contain, never stretched). */
 export const shotSize = { width: 1080, height: 2340 };
-export const bgs = { hero: "/assets/backgrounds/momo_sleep_with_stars.jpg", mission: "/assets/backgrounds/momo_looking_at_moon.jpg" };
+export const bgs = {
+  hero: "/assets/backgrounds/momo_sleep_with_stars.jpg",
+  heroMobile: "/assets/backgrounds/momo_sleep_with_stars_2.jpg",
+  mission: "/assets/backgrounds/momo_looking_at_moon.jpg",
+};

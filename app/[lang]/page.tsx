@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Download } from "@/components/Download";
@@ -30,6 +30,10 @@ export default async function Page({ params }: P) {
   if (!isLang(lang)) notFound();
   const t = dict[lang];
   const other = lang === "fa" ? "en" : "fa";
+  // Art direction: portrait artwork on phones, landscape from 768px up. Only the matching file is downloaded.
+  const heroImg = { alt: "", fill: true, quality: 90, sizes: "100vw", priority: true } as const;
+  const { props: { srcSet: heroWide, ...heroFallback } } = getImageProps({ ...heroImg, src: bgs.hero });
+  const { props: { srcSet: heroTall } } = getImageProps({ ...heroImg, src: bgs.heroMobile });
   const links = [["#features", t.nav.features], ["#sounds", t.nav.sounds], ["#how", t.nav.how], ["#faq", t.nav.faq]] as const;
 
   // Structured data for search + answer engines (AEO): the FAQ text mirrors the visible page.
@@ -72,7 +76,11 @@ export default async function Page({ params }: P) {
 
       <main id="main">
         <section id="top" aria-labelledby="hero-title" className="relative isolate mx-3 mt-2 overflow-hidden rounded-[2rem] ring-1 ring-edge/30 md:mx-6 md:mt-4 md:rounded-[2.5rem]">
-          <Image src={bgs.hero} alt="" fill priority quality={90} sizes="100vw" className="-z-10 object-cover object-[72%_center] md:object-right rtl:scale-x-[-1] feather-y" />
+          <picture>
+            <source media="(min-width: 768px)" srcSet={heroWide} />
+            <source media="(max-width: 767px)" srcSet={heroTall} />
+            <img {...heroFallback} alt="" className="-z-10 object-cover object-center md:object-right md:rtl:scale-x-[-1] feather-y" />
+          </picture>
           <div aria-hidden className="absolute inset-0 -z-10 bg-linear-to-b from-sky-top/85 via-sky-top/60 to-sky-top/15 lg:bg-linear-to-r lg:from-sky-top lg:via-sky-top/85 lg:to-sky-top/40 lg:rtl:bg-linear-to-l" />
           <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-12 sm:py-16 lg:grid-cols-[1.1fr_.9fr] lg:gap-8 lg:py-24">
             <div className="rise max-w-xl">
